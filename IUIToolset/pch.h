@@ -12,6 +12,7 @@
 #include <vector>
 #include <atlenc.h>
 #include <PathCch.h>
+#include "../../Publib/Crypt/Hash256.h"
 
 #pragma comment(lib, "Pathcch.lib")
 

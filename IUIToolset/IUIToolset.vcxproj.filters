@@ -45,6 +45,12 @@
     <ClInclude Include="DropStatic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Publib\Crypt\Hash256.h">
+      <Filter>Publib</Filter>
+    </ClInclude>
+    <ClInclude Include="Sha256Page.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IUIToolset.cpp">
@@ -63,6 +69,12 @@
       <Filter>Publib</Filter>
     </ClCompile>
     <ClCompile Include="DropStatic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Publib\Crypt\Hash256.cpp">
+      <Filter>Publib</Filter>
+    </ClCompile>
+    <ClCompile Include="Sha256Page.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

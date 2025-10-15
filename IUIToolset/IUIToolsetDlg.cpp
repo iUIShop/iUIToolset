@@ -104,7 +104,9 @@ BOOL CIUIToolsetDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-	HTREEITEM hTreeItem = m_treNavigate.InsertItem(_T("Base64 Encode/Decode"), 0, 0);
+	HTREEITEM hTreeItem = m_treNavigate.InsertItem(_T("Sha256"), 0, 0);
+	m_treNavigate.SetItemData(hTreeItem, TREE_ITEM_TYPE_SHA256);
+	hTreeItem = m_treNavigate.InsertItem(_T("Base64 Encode/Decode"), 0, 0);
 	m_treNavigate.SetItemData(hTreeItem, TREE_ITEM_TYPE_BASE64);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -172,11 +174,28 @@ void CIUIToolsetDlg::OnSelchangedTreNavigate(NMHDR* pNMHDR, LRESULT* pResult)
 	HTREEITEM hSelItem = m_treNavigate.GetSelectedItem();
 	if (hSelItem)
 	{
+		if (m_PageSha256.GetSafeHwnd() != nullptr)
+			m_PageSha256.ShowWindow(SW_HIDE);
+		if (m_PageBase64.GetSafeHwnd() != nullptr)
+			m_PageBase64.ShowWindow(SW_HIDE);
+
 		DWORD dwItemType = (DWORD)m_treNavigate.GetItemData(hSelItem);
 		switch (dwItemType)
 		{
+		case TREE_ITEM_TYPE_SHA256:
+			if (m_PageSha256.GetSafeHwnd() == nullptr)
+			{
+				m_PageSha256.Create(IDD_SHA256, this);
+			}
+			m_PageSha256.MoveWindow(&rcPage);
+			m_PageSha256.ShowWindow(SW_SHOW);
+			break;
+
 		case TREE_ITEM_TYPE_BASE64:
-			m_PageBase64.Create(IDD_BASE64, this);
+			if (m_PageBase64.GetSafeHwnd() == nullptr)
+			{
+				m_PageBase64.Create(IDD_BASE64, this);
+			}
 			m_PageBase64.MoveWindow(&rcPage);
 			m_PageBase64.ShowWindow(SW_SHOW);
 			break;
@@ -199,6 +218,13 @@ void CIUIToolsetDlg::OnSize(UINT nType, int cx, int cy)
 		m_staPageArea.GetWindowRect(&rcPage);
 		ScreenToClient(&rcPage);
 
-		m_PageBase64.MoveWindow(&rcPage);
+		if (m_PageSha256.GetSafeHwnd() != nullptr)
+		{
+			m_PageSha256.MoveWindow(&rcPage);
+		}
+		if (m_PageBase64.GetSafeHwnd() != nullptr)
+		{
+			m_PageBase64.MoveWindow(&rcPage);
+		}
 	}
 }
