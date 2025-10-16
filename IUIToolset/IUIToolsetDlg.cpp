@@ -108,6 +108,8 @@ BOOL CIUIToolsetDlg::OnInitDialog()
 	m_treNavigate.SetItemData(hTreeItem, TREE_ITEM_TYPE_SHA256);
 	hTreeItem = m_treNavigate.InsertItem(_T("Base64 Encode/Decode"), 0, 0);
 	m_treNavigate.SetItemData(hTreeItem, TREE_ITEM_TYPE_BASE64);
+	hTreeItem = m_treNavigate.InsertItem(_T("Json"), 0, 0);
+	m_treNavigate.SetItemData(hTreeItem, TREE_ITEM_TYPE_JSON);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -178,6 +180,8 @@ void CIUIToolsetDlg::OnSelchangedTreNavigate(NMHDR* pNMHDR, LRESULT* pResult)
 			m_PageSha256.ShowWindow(SW_HIDE);
 		if (m_PageBase64.GetSafeHwnd() != nullptr)
 			m_PageBase64.ShowWindow(SW_HIDE);
+		if (m_PageJson.GetSafeHwnd() != nullptr)
+			m_PageJson.ShowWindow(SW_HIDE);
 
 		DWORD dwItemType = (DWORD)m_treNavigate.GetItemData(hSelItem);
 		switch (dwItemType)
@@ -199,6 +203,16 @@ void CIUIToolsetDlg::OnSelchangedTreNavigate(NMHDR* pNMHDR, LRESULT* pResult)
 			m_PageBase64.MoveWindow(&rcPage);
 			m_PageBase64.ShowWindow(SW_SHOW);
 			break;
+
+		case TREE_ITEM_TYPE_JSON:
+			if (m_PageJson.GetSafeHwnd() == nullptr)
+			{
+				m_PageJson.Create(IDD_JSON, this);
+			}
+			m_PageJson.MoveWindow(&rcPage);
+			m_PageJson.ShowWindow(SW_SHOW);
+			break;
+
 		default:
 			break;
 		}
@@ -225,6 +239,10 @@ void CIUIToolsetDlg::OnSize(UINT nType, int cx, int cy)
 		if (m_PageBase64.GetSafeHwnd() != nullptr)
 		{
 			m_PageBase64.MoveWindow(&rcPage);
+		}
+		if (m_PageJson.GetSafeHwnd() != nullptr)
+		{
+			m_PageJson.MoveWindow(&rcPage);
 		}
 	}
 }

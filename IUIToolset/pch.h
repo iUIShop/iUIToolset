@@ -12,10 +12,14 @@
 #include <vector>
 #include <atlenc.h>
 #include <PathCch.h>
+#include <strsafe.h>
 #include "../../Publib/Crypt/Hash256.h"
+#include "../../Publib/json-1.8.3/JsonHelper.h"
+
 
 #pragma comment(lib, "Pathcch.lib")
 
 #define WM_DROPFILE (WM_USER + 201)
+#define WM_RE_CARET_CHANGED			WM_USER+1000
 
 #endif //PCH_H

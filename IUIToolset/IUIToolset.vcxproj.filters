@@ -16,6 +16,12 @@
     <Filter Include="Publib">
       <UniqueIdentifier>{cb12ae31-dab2-4e3a-ab42-42522b92d3d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Publib\Json-1.8.3">
+      <UniqueIdentifier>{c4871bef-5647-4d81-925f-f57b9f154cb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Publib\Json-1.8.3\Json">
+      <UniqueIdentifier>{ecdd00f4-0ed4-4ced-819e-f93527b1ab9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IUIToolset.h">
@@ -51,6 +57,45 @@
     <ClInclude Include="Sha256Page.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="JsonPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Publib\json-1.8.3\json_batchallocator.h">
+      <Filter>Publib\Json-1.8.3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Publib\json-1.8.3\json_tool.h">
+      <Filter>Publib\Json-1.8.3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Publib\json-1.8.3\JsonHelper.h">
+      <Filter>Publib\Json-1.8.3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Publib\json-1.8.3\json\autolink.h">
+      <Filter>Publib\Json-1.8.3\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Publib\json-1.8.3\json\config.h">
+      <Filter>Publib\Json-1.8.3\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Publib\json-1.8.3\json\features.h">
+      <Filter>Publib\Json-1.8.3\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Publib\json-1.8.3\json\forwards.h">
+      <Filter>Publib\Json-1.8.3\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Publib\json-1.8.3\json\json.h">
+      <Filter>Publib\Json-1.8.3\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Publib\json-1.8.3\json\reader.h">
+      <Filter>Publib\Json-1.8.3\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Publib\json-1.8.3\json\value.h">
+      <Filter>Publib\Json-1.8.3\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Publib\json-1.8.3\json\writer.h">
+      <Filter>Publib\Json-1.8.3\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonRichEditCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IUIToolset.cpp">
@@ -77,6 +122,21 @@
     <ClCompile Include="Sha256Page.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="JsonPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Publib\json-1.8.3\json_reader.cpp">
+      <Filter>Publib\Json-1.8.3</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Publib\json-1.8.3\json_value.cpp">
+      <Filter>Publib\Json-1.8.3</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Publib\json-1.8.3\json_writer.cpp">
+      <Filter>Publib\Json-1.8.3</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonRichEditCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="IUIToolset.rc">
@@ -86,6 +146,15 @@
   <ItemGroup>
     <None Include="res\IUIToolset.rc2">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\Publib\json-1.8.3\json_internalarray.inl">
+      <Filter>Publib\Json-1.8.3</Filter>
+    </None>
+    <None Include="..\..\Publib\json-1.8.3\json_internalmap.inl">
+      <Filter>Publib\Json-1.8.3</Filter>
+    </None>
+    <None Include="..\..\Publib\json-1.8.3\json_valueiterator.inl">
+      <Filter>Publib\Json-1.8.3</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@
 #define IDR_MAINFRAME                   128
 #define IDD_BASE64                      130
 #define IDD_SHA256                      132
+#define IDD_JSON                        134
 #define IDC_TRE_NAVIGATE                1000
 #define IDC_EDT_FILE                    1001
 #define IDC_EDT_SOURCE                  1002
@@ -25,14 +26,22 @@
 #define IDC_STA_BASE64_FILE_TO_FILE     1013
 #define IDC_BTN_SAVE_RESULT_TO_FILE     1014
 #define IDC_STA_PAGE_AREA               1015
+#define IDC_BTN_FORMAT                  1016
+#define IDC_BTN_ESCAPE                  1017
+#define IDC_BTN_REMOVE_ESCAPE           1018
+#define IDC_BTN_ONE_LINE                1019
+#define IDC_EDT_OUTPUT                  1020
+#define IDC_RE_JSON                     1021
+#define IDC_STA_STATUS_BAR              1022
+#define IDC_BTN_STR_TO_OJB              1023
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        134
+#define _APS_NEXT_RESOURCE_VALUE        136
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1016
+#define _APS_NEXT_CONTROL_VALUE         1024
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
