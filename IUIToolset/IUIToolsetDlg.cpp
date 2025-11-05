@@ -184,6 +184,8 @@ void CIUIToolsetDlg::OnSelchangedTreNavigate(NMHDR* pNMHDR, LRESULT* pResult)
 			m_PageBase64.ShowWindow(SW_HIDE);
 		if (m_PageJson.GetSafeHwnd() != nullptr)
 			m_PageJson.ShowWindow(SW_HIDE);
+		if (m_PageMaxLengthLine.GetSafeHwnd() != nullptr)
+			m_PageMaxLengthLine.ShowWindow(SW_HIDE);
 
 		DWORD dwItemType = (DWORD)m_treNavigate.GetItemData(hSelItem);
 		switch (dwItemType)
