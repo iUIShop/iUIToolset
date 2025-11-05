@@ -96,6 +96,9 @@
     <ClInclude Include="JsonRichEditCtrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MaxLengthLinePage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IUIToolset.cpp">
@@ -135,6 +138,9 @@
       <Filter>Publib\Json-1.8.3</Filter>
     </ClCompile>
     <ClCompile Include="JsonRichEditCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MaxLengthLinePage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

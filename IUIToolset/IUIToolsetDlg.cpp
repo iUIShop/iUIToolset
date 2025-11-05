@@ -110,6 +110,8 @@ BOOL CIUIToolsetDlg::OnInitDialog()
 	m_treNavigate.SetItemData(hTreeItem, TREE_ITEM_TYPE_BASE64);
 	hTreeItem = m_treNavigate.InsertItem(_T("Json"), 0, 0);
 	m_treNavigate.SetItemData(hTreeItem, TREE_ITEM_TYPE_JSON);
+	hTreeItem = m_treNavigate.InsertItem(_T("Max length line"), 0, 0);
+	m_treNavigate.SetItemData(hTreeItem, TREE_ITEM_TYPE_MAX_LENGTH_LINE);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -213,6 +215,15 @@ void CIUIToolsetDlg::OnSelchangedTreNavigate(NMHDR* pNMHDR, LRESULT* pResult)
 			m_PageJson.ShowWindow(SW_SHOW);
 			break;
 
+		case TREE_ITEM_TYPE_MAX_LENGTH_LINE:
+			if (m_PageMaxLengthLine.GetSafeHwnd() == nullptr)
+			{
+				m_PageMaxLengthLine.Create(IDD_MAX_LENGTH_LINE, this);
+			}
+			m_PageMaxLengthLine.MoveWindow(&rcPage);
+			m_PageMaxLengthLine.ShowWindow(SW_SHOW);
+			break;
+
 		default:
 			break;
 		}
@@ -243,6 +254,10 @@ void CIUIToolsetDlg::OnSize(UINT nType, int cx, int cy)
 		if (m_PageJson.GetSafeHwnd() != nullptr)
 		{
 			m_PageJson.MoveWindow(&rcPage);
+		}
+		if (m_PageMaxLengthLine.GetSafeHwnd() != nullptr)
+		{
+			m_PageMaxLengthLine.MoveWindow(&rcPage);
 		}
 	}
 }
