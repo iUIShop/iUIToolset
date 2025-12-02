@@ -1,4 +1,4 @@
-// PdfPage.cpp : implementation file
+ï»¿// PdfPage.cpp : implementation file
 //
 
 #include "pch.h"
@@ -13,43 +13,28 @@ using namespace Gdiplus;
 
 int GetEncoderClsid(const WCHAR* format, CLSID* pClsid);
 
-bool SaveBitmapAsPNG_GDIPlus(FPDF_BITMAP bitmap, const std::string& filename) {
-    if (!bitmap) return false;
+bool SaveBitmapAsPNG_GDIPlus(FPDF_BITMAP bitmap, const std::string& filename)
+{
+    if (!bitmap)
+        return false;
 
     int width = FPDFBitmap_GetWidth(bitmap);
     int height = FPDFBitmap_GetHeight(bitmap);
-    void* buffer = FPDFBitmap_GetBuffer(bitmap);
+    BYTE* buffer = (BYTE *)FPDFBitmap_GetBuffer(bitmap);
     int stride = FPDFBitmap_GetStride(bitmap);
 
-    if (!buffer || width <= 0 || height <= 0) return false;
+    if (!buffer || width <= 0 || height <= 0)
+        return false;
 
-    // ³õÊ¼»¯ GDI+
+    // åˆå§‹åŒ– GDI+
     GdiplusStartupInput gdiplusStartupInput;
     ULONG_PTR gdiplusToken;
     GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 
-    // ×ª»»µ½ RGBA
-    std::vector<BYTE> rgba_buffer(width * height * 4);
-    BYTE* src = static_cast<BYTE*>(buffer);
-    BYTE* dst = rgba_buffer.data();
+    // åˆ›å»º Bitmap
+    Bitmap bmp(width, height, width * 4, PixelFormat32bppARGB, buffer);
 
-    for (int y = 0; y < height; ++y) {
-        for (int x = 0; x < width; ++x) {
-            int src_idx = y * stride + x * 4;
-            int dst_idx = (y * width + x) * 4;
-
-            // BGRA ×ª RGBA
-            dst[dst_idx + 0] = src[src_idx + 2];  // R
-            dst[dst_idx + 1] = src[src_idx + 1];  // G
-            dst[dst_idx + 2] = src[src_idx + 0];  // B
-            dst[dst_idx + 3] = src[src_idx + 3];  // A
-        }
-    }
-
-    // ´´½¨ Bitmap
-    Bitmap bmp(width, height, width * 4, PixelFormat32bppARGB, rgba_buffer.data());
-
-    // ±£´æÎª PNG
+    // ä¿å­˜ä¸º PNG
     CLSID pngClsid;
     GetEncoderClsid(L"image/png", &pngClsid);
 
@@ -60,20 +45,25 @@ bool SaveBitmapAsPNG_GDIPlus(FPDF_BITMAP bitmap, const std::string& filename) {
     return status == Ok;
 }
 
-// »ñÈ¡±àÂëÆ÷ CLSID
-int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
+// èŽ·å–ç¼–ç å™¨ CLSID
+int GetEncoderClsid(const WCHAR* format, CLSID* pClsid)
+{
     UINT num = 0;
     UINT size = 0;
     GetImageEncodersSize(&num, &size);
-    if (size == 0) return -1;
+    if (size == 0)
+        return -1;
 
     ImageCodecInfo* pImageCodecInfo = (ImageCodecInfo*)malloc(size);
-    if (!pImageCodecInfo) return -1;
+    if (!pImageCodecInfo)
+        return -1;
 
     GetImageEncoders(num, size, pImageCodecInfo);
 
-    for (UINT i = 0; i < num; ++i) {
-        if (wcscmp(pImageCodecInfo[i].MimeType, format) == 0) {
+    for (UINT i = 0; i < num; ++i)
+    {
+        if (wcscmp(pImageCodecInfo[i].MimeType, format) == 0)
+        {
             *pClsid = pImageCodecInfo[i].Clsid;
             free(pImageCodecInfo);
             return i;
@@ -87,7 +77,7 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
 // Edit from Deepseek
 bool pdfToImagesWithPDFium(const std::string& pdfPath, const std::string& outputDir)
 {
-    // ³õÊ¼»¯PDFium
+    // åˆå§‹åŒ–PDFium
     FPDF_LIBRARY_CONFIG config;
     config.version = 2;
     config.m_pUserFontPaths = nullptr;
@@ -95,7 +85,7 @@ bool pdfToImagesWithPDFium(const std::string& pdfPath, const std::string& output
     config.m_v8EmbedderSlot = 0;
     FPDF_InitLibraryWithConfig(&config);
 
-    // ¼ÓÔØPDFÎÄµµ
+    // åŠ è½½PDFæ–‡æ¡£
     FPDF_DOCUMENT doc = FPDF_LoadDocument(pdfPath.c_str(), nullptr);
     if (!doc)
     {
@@ -108,13 +98,14 @@ bool pdfToImagesWithPDFium(const std::string& pdfPath, const std::string& output
     for (int i = 0; i < pageCount; ++i)
     {
         FPDF_PAGE page = FPDF_LoadPage(doc, i);
-        if (!page) continue;
+        if (!page)
+            continue;
 
-        // »ñÈ¡Ò³Ãæ³ß´ç
+        // èŽ·å–é¡µé¢å°ºå¯¸
         double width = FPDF_GetPageWidth(page);
         double height = FPDF_GetPageHeight(page);
 
-        // ´´½¨Î»Í¼
+        // åˆ›å»ºä½å›¾
         FPDF_BITMAP bitmap = FPDFBitmap_Create(
             (int)width, (int)height, 0);
 
@@ -123,11 +114,11 @@ bool pdfToImagesWithPDFium(const std::string& pdfPath, const std::string& output
             FPDFBitmap_FillRect(bitmap, 0, 0,
                 (int)width, (int)height, 0xFFFFFFFF);
 
-            // äÖÈ¾Ò³Ãæ
+            // æ¸²æŸ“é¡µé¢
             FPDF_RenderPageBitmap(bitmap, page, 0, 0,
                 (int)width, (int)height, 0, 0);
 
-            // ±£´æÎªBMP£¨ÐèÒª×ª»»ÎªÆäËû¸ñÊ½¿ÉÊ¹ÓÃÆäËû¿â£©
+            // ä¿å­˜ä¸ºBMPï¼ˆéœ€è¦è½¬æ¢ä¸ºå…¶ä»–æ ¼å¼å¯ä½¿ç”¨å…¶ä»–åº“ï¼‰
 			CStringA strFilename;
 			strFilename.Format("%spage_%d.png", outputDir.c_str(), i + 1);
 			SaveBitmapAsPNG_GDIPlus(bitmap, (LPCSTR)strFilename);
@@ -141,7 +132,7 @@ bool pdfToImagesWithPDFium(const std::string& pdfPath, const std::string& output
     FPDF_CloseDocument(doc);
     FPDF_DestroyLibrary();
 
-    // ´ò¿ªÎÄ¼þ¼Ð
+    // æ‰“å¼€æ–‡ä»¶å¤¹
 	ShellExecuteA(NULL, "open", outputDir.c_str(), NULL, NULL, SW_SHOW);
 
     return true;
@@ -198,7 +189,7 @@ void CPdfPage::OnBnClickedBtnConvertToImages()
         return;
 	}
 
-    // µÃµ½"ÏÂÔØ"ÎÄ¼þ¼ÐÂ·¾¶
+    // å¾—åˆ°"ä¸‹è½½"æ–‡ä»¶å¤¹è·¯å¾„
     CStringW strDownloadPath;
     PWSTR path = nullptr;
     HRESULT hr = SHGetKnownFolderPath(FOLDERID_Downloads, 0, NULL, &path);
@@ -213,7 +204,7 @@ void CPdfPage::OnBnClickedBtnConvertToImages()
         return;
     }
 
-    // Éú³ÉÒ»¸öGUID×Ö·û´®×÷Îª×ÓÎÄ¼þ¼ÐÃû³Æ
+    // ç”Ÿæˆä¸€ä¸ªGUIDå­—ç¬¦ä¸²ä½œä¸ºå­æ–‡ä»¶å¤¹åç§°
     GUID guid;
     CoCreateGuid(&guid);
     WCHAR guidString[40] = { 0 };
@@ -226,11 +217,11 @@ void CPdfPage::OnBnClickedBtnConvertToImages()
         ((unsigned long long)guid.Data4[5] << 16) |
         ((unsigned long long)guid.Data4[6] << 8) |
         ((unsigned long long)guid.Data4[7]));
-    // ´´½¨×ÓÎÄ¼þ¼Ð
+    // åˆ›å»ºå­æ–‡ä»¶å¤¹
     CStringW strOutputDir = strDownloadPath + L"\\" + guidString + L"\\";
     CreateDirectoryW(strOutputDir, NULL);
 
-	// µ÷ÓÃ×ª»»º¯Êý
+	// è°ƒç”¨è½¬æ¢å‡½æ•°
 	std::string strPdfPathU8 = IUI::UnicodeToUTF8(strPdfPath);
     std::string strTargetPathU8 = IUI::UnicodeToUTF8(strOutputDir);
     pdfToImagesWithPDFium(strPdfPathU8, strTargetPathU8);
