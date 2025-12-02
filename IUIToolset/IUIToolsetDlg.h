@@ -7,6 +7,7 @@
 #include "Sha256Page.h"
 #include "Base64Page.h"
 #include "JsonPage.h"
+#include "PdfPage.h"
 #include "MaxLengthLinePage.h"
 
 
@@ -15,7 +16,8 @@ enum TREE_ITEM_TYPE
 	TREE_ITEM_TYPE_SHA256 = 1,
 	TREE_ITEM_TYPE_BASE64 = 2,
 	TREE_ITEM_TYPE_JSON = 3,
-	TREE_ITEM_TYPE_MAX_LENGTH_LINE = 4,
+	TREE_ITEM_TYPE_PDF_TO_IMAGES = 4,
+	TREE_ITEM_TYPE_MAX_LENGTH_LINE = 5,
 };
 
 // CIUIToolsetDlg dialog
@@ -51,6 +53,7 @@ public:
 	CSha256Page m_PageSha256;
 	CBase64Page m_PageBase64;
 	CJsonPage m_PageJson;
+	CPdfPage m_PagePdf;
 	CMaxLengthLinePage m_PageMaxLengthLine;
 
 	CTreeCtrl m_treNavigate;

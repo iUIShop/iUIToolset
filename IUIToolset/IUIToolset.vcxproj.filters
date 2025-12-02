@@ -99,6 +99,9 @@
     <ClInclude Include="MaxLengthLinePage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PdfPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IUIToolset.cpp">
@@ -141,6 +144,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MaxLengthLinePage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PdfPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

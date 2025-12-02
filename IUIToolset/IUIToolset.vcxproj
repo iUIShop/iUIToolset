@@ -96,6 +96,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>pdfium-win-x64\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>pdfium.dll.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -118,6 +120,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>pdfium-win-x64\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>pdfium.dll.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -144,6 +148,8 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>pdfium-win-x64\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>pdfium.dll.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -170,6 +176,8 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>pdfium-win-x64\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>pdfium.dll.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -205,6 +213,7 @@
     <ClInclude Include="JsonRichEditCtrl.h" />
     <ClInclude Include="MaxLengthLinePage.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="PdfPage.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Sha256Page.h" />
     <ClInclude Include="targetver.h" />
@@ -253,6 +262,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PdfPage.cpp" />
     <ClCompile Include="Sha256Page.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,7 @@
 #define IDD_SHA256                      132
 #define IDD_JSON                        134
 #define IDD_MAX_LENGTH_LINE             136
+#define IDD_PDF                         138
 #define IDC_TRE_NAVIGATE                1000
 #define IDC_EDT_FILE                    1001
 #define IDC_EDT_SOURCE                  1002
@@ -36,14 +37,18 @@
 #define IDC_STA_STATUS_BAR              1022
 #define IDC_BTN_STR_TO_OJB              1023
 #define IDC_STA_MAX_LENGTH_LINE         1024
+#define IDC_EDT_PDF_PATH                1025
+#define IDC_BTN_BROWSER_PDF             1026
+#define IDC_BTN_CONVERT_TO_IMAGES       1027
+#define IDC_STA_DROP_PDF                1028
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        138
+#define _APS_NEXT_RESOURCE_VALUE        140
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1025
+#define _APS_NEXT_CONTROL_VALUE         1029
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

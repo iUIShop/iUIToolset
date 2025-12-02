@@ -110,6 +110,8 @@ BOOL CIUIToolsetDlg::OnInitDialog()
 	m_treNavigate.SetItemData(hTreeItem, TREE_ITEM_TYPE_BASE64);
 	hTreeItem = m_treNavigate.InsertItem(_T("Json"), 0, 0);
 	m_treNavigate.SetItemData(hTreeItem, TREE_ITEM_TYPE_JSON);
+	hTreeItem = m_treNavigate.InsertItem(_T("Pdf to images"), 0, 0);
+	m_treNavigate.SetItemData(hTreeItem, TREE_ITEM_TYPE_PDF_TO_IMAGES);
 	hTreeItem = m_treNavigate.InsertItem(_T("Max length line"), 0, 0);
 	m_treNavigate.SetItemData(hTreeItem, TREE_ITEM_TYPE_MAX_LENGTH_LINE);
 
@@ -184,6 +186,8 @@ void CIUIToolsetDlg::OnSelchangedTreNavigate(NMHDR* pNMHDR, LRESULT* pResult)
 			m_PageBase64.ShowWindow(SW_HIDE);
 		if (m_PageJson.GetSafeHwnd() != nullptr)
 			m_PageJson.ShowWindow(SW_HIDE);
+		if (m_PagePdf.GetSafeHwnd() != nullptr)
+			m_PagePdf.ShowWindow(SW_HIDE);
 		if (m_PageMaxLengthLine.GetSafeHwnd() != nullptr)
 			m_PageMaxLengthLine.ShowWindow(SW_HIDE);
 
@@ -215,6 +219,15 @@ void CIUIToolsetDlg::OnSelchangedTreNavigate(NMHDR* pNMHDR, LRESULT* pResult)
 			}
 			m_PageJson.MoveWindow(&rcPage);
 			m_PageJson.ShowWindow(SW_SHOW);
+			break;
+
+		case TREE_ITEM_TYPE_PDF_TO_IMAGES:
+			if (m_PagePdf.GetSafeHwnd() == nullptr)
+			{
+				m_PagePdf.Create(IDD_PDF, this);
+			}
+			m_PagePdf.MoveWindow(&rcPage);
+			m_PagePdf.ShowWindow(SW_SHOW);
 			break;
 
 		case TREE_ITEM_TYPE_MAX_LENGTH_LINE:
@@ -256,6 +269,10 @@ void CIUIToolsetDlg::OnSize(UINT nType, int cx, int cy)
 		if (m_PageJson.GetSafeHwnd() != nullptr)
 		{
 			m_PageJson.MoveWindow(&rcPage);
+		}
+		if (m_PagePdf.GetSafeHwnd() != nullptr)
+		{
+			m_PagePdf.MoveWindow(&rcPage);
 		}
 		if (m_PageMaxLengthLine.GetSafeHwnd() != nullptr)
 		{
